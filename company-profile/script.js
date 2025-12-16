@@ -35,3 +35,20 @@ function toggleReadMore(paragrafId, linkElement) {
     linkElement.querySelector("i").className = "ri-arrow-up-line";
   }
 }
+
+/* ============================================================
+   FUNGSI TAMBAHAN UNTUK TOMBOL LOGIN
+   ============================================================ */
+
+// Ambil tombol login di navbar
+const loginButton = document.querySelector(".btn-login");
+
+// Pastikan tombol ada sebelum memberi event listener
+if (loginButton) {
+  loginButton.addEventListener("click", function (event) {
+    event.preventDefault(); // cegah aksi default <a> agar bisa diarahkan manual
+
+    // Arahkan ke halaman login
+    window.location.href = "login.html";
+  });
+}

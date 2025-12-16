@@ -60,6 +60,61 @@ nav {
     color: #43a047;
 }
 
+/* --- DROPDOWN MENU CSS DIMULAI DI SINI --- */
+
+/* 1. Atur posisi LI induk untuk menempatkan sub-menu secara relatif */
+.nav-menu li.dropdown-menu {
+    position: relative; 
+}
+
+/* 2. Styling dan pengaturan sub-menu (dropdown-content) */
+.nav-menu .dropdown-content {
+    display: none; /* Sembunyikan sub-menu secara default */
+    position: absolute;
+    top: 100%; /* Mulai tepat di bawah menu Profil */
+    left: 0;
+    min-width: 200px;
+    background-color: #ffffff; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    border-top: 3px solid #2e7d32; /* Menggunakan warna primary Anda */
+}
+
+/* 3. Styling tautan di dalam sub-menu */
+.nav-menu .dropdown-content li a {
+    color: #333;
+    padding: 10px 15px;
+    display: block; 
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* 4. Efek hover pada item sub-menu */
+.nav-menu .dropdown-content li a:hover {
+    background-color: #f1f1f1;
+    color: #2e7d32; /* Menggunakan warna primary Anda */
+}
+
+/* 5. Aturan untuk menampilkan sub-menu saat hover pada LI induk */
+.nav-menu li.dropdown-menu:hover .dropdown-content {
+    display: block;
+}
+
+/* Styling ikon panah (di sebelah 'Profil') */
+.nav-menu li.dropdown-menu > a i {
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+/* --- DROPDOWN MENU CSS BERAKHIR DI SINI --- */
+
+
 /* Tombol Login dan Register Baru */
 .auth-buttons {
     display: flex;
@@ -351,18 +406,17 @@ nav {
 }
 
 .berita-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
     gap: 30px;
+    overflow-x: auto;  /* biar bisa digeser ke samping */
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
 }
 
 .berita-card {
-    background: #f1f8f1;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-    overflow: hidden;
-    transition: 0.3s;
-    text-align: left;
+    min-width: 300px;  /* memastikan 1 card punya lebar */
+    flex: 0 0 auto;
+    
 }
 .berita-card:hover {
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
@@ -625,9 +679,30 @@ nav {
     header {
         padding: 15px 20px;
     }
+    /* Pada tampilan mobile, kita perlu menambahkan aturan untuk dropdown jika nav-menu disembunyikan */
     .nav-menu {
+        /* Catatan: Karena .nav-menu diset 'display: none' di sini, 
+           dropdown tidak akan terlihat di layar < 600px.
+           Jika ingin tetap ada, Anda harus memprogram toggle menu mobile.
+           Saya biarkan sesuai logika yang Anda buat (display: none)
+        */
         display: none;
     }
+    
+    /* Namun, pastikan dropdown-menu di reset agar tidak mengacaukan tata letak */
+    .nav-menu .dropdown-content {
+        position: absolute;
+        width: 100%;
+        box-shadow: none;
+        border-top: none;
+        background: none;
+        display: none;
+    }
+    .nav-menu li.dropdown-menu:hover .dropdown-content {
+        display: block;
+    }
+    
+    /* Lanjutan Mobile CSS */
     .auth-buttons {
         width: 100%;
         justify-content: center;
